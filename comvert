@@ -68,14 +68,22 @@ cd "$BASENAME"
 CBSCAN=`find -type f -iname "z*.*" 2>/dev/null`
 [[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCAN || echo "--> No matches found"
 
+CBSCAN2=`find -type f -iname "sou*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCAN2 || echo "--> No matches found"
+
 CBTHUMBS=`find */Thumbs.db 2>/dev/null`
 [[ ! -z "$CBTHUMBS" ]] && rm $CBTHUMBS && echo "--> Trashed Thumbs.db"
 
 CBSTORE=`find */.DS_Store 2>/dev/null`
 [[ ! -z "$CBSTORE" ]] && rm $CBSTORE && echo "--> Trashed .DS_Store"
 
+if [ -f "/bin/leanify" ]; then
+   echo "-> Calling leanify to optimize the images"
+   leanify --keep-exif *.jpg
+fi
+
 echo "-> Compressing"
-7z a -t$FORMAT "$NEWNAME" * > /dev/null
+7z a -t$FORMAT -mx=0 "$NEWNAME" * > /dev/null
 
 mv "$NEWNAME" "$DIRNAME"
 
