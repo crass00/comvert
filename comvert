@@ -65,11 +65,20 @@ echo "-> Extracting"
 cd "$BASENAME"
 
 # Remove unwanted files
-CBSCAN=`find -type f -iname "z*.*" 2>/dev/null`
-[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCAN || echo "--> No matches found"
+CBSCANZZZ=`find -type f -iname "zzz*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCANZZZ || echo "--> No matches found for files starting with zzz"
 
-CBSCAN2=`find -type f -iname "sou*.*" 2>/dev/null`
-[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCAN2 || echo "--> No matches found"
+CBSCANSOU=`find -type f -iname "sou*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCANSOU || echo "--> No matches found for files starting with sou"
+
+CBSCANXXX=`find -type f -iname "xxx*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCANXXX || echo "--> No matches found for files starting with xxx"
+
+CBSCANYYY=`find -type f -iname "yyy*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCANYYY || echo "--> No matches found for files starting with yyy"
+
+CBSCANZ=`find -type f -iname "z*.*" 2>/dev/null`
+[[ ! -z "$CBSCAN" ]] && echo "--> Found scan credits" && rm $CBSCANZ || echo "--> No matches found for files starting with z"
 
 CBTHUMBS=`find */Thumbs.db 2>/dev/null`
 [[ ! -z "$CBTHUMBS" ]] && rm $CBTHUMBS && echo "--> Trashed Thumbs.db"
